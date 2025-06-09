@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My Love ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to top right, #ffccd5, #ffe6e6);
+      overflow-x: hidden;
+      text-align: center;
+      padding-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #b30059;
+      margin-top: 30px;
+    }
+
+    p {
+      font-size: 1.5em;
+      color: #660033;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1em;
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff66b2;
+    }
+
+    #secret {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.3em;
+      color: #993366;
+    }
+
+    .main-photo {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: rotate(45deg) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(45deg) translateY(-1000px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hi My Love ❤️</h1>
+  <p>I made this little page just for you...</p>
+
+  <!-- Main featured photo -->
+  <img src="https://via.placeholder.com/400x300.png?text=Us+💑" alt="Us together" class="main-photo" />
+
+  <button onclick="reveal()">Click Me</button>
+  <p id="secret">You're the light of my life. I love you endlessly. 💕</p>
+
+  <!-- Gallery Section -->
+  <div class="gallery">
+    <img src="https://via.placeholder.com/200.png?text=💖+1" alt="Memory 1">
+    <img src="https://via.placeholder.com/200.png?text=🌸+2" alt="Memory 2">
+    <img src="https://via.placeholder.com/200.png?text=💘+3" alt="Memory 3">
+    <img src="https://via.placeholder.com/200.png?text=💓+4" alt="Memory 4">
+  </div>
+
+  <!-- Heart animation -->
+  <script>
+    function reveal() {
+      document.getElementById('secret').style.display = 'block';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
