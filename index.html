@@ -12,17 +12,20 @@
       overflow-x: hidden;
       text-align: center;
       padding-bottom: 50px;
+      position: relative;
     }
 
     h1 {
       font-size: 3em;
       color: #b30059;
       margin-top: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     p {
       font-size: 1.5em;
       color: #660033;
+      margin: 10px 0;
     }
 
     button {
@@ -35,20 +38,33 @@
       border-radius: 25px;
       cursor: pointer;
       transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     button:hover {
       background-color: #ff66b2;
+      transform: scale(1.05);
     }
 
     #secret, #gallery-container {
       display: none;
       margin-top: 20px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #secret.show, #gallery-container.show {
+      display: block;
+      opacity: 1;
     }
 
     #secret {
       font-size: 1.3em;
       color: #993366;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .gallery {
@@ -66,6 +82,7 @@
       border-radius: 15px;
       transition: transform 0.3s ease;
       box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+      cursor: pointer;
     }
 
     .gallery img:hover {
@@ -111,6 +128,56 @@
         opacity: 0;
       }
     }
+
+    /* New styles for a romantic touch */
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: sparkle 1.5s infinite;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #b30059;
+    }
   </style>
 </head>
 <body>
@@ -121,23 +188,43 @@
   <button onclick="reveal()">Click Me</button>
 
   <!-- Hidden Love Message -->
-  <p id="secret">text here</p>
+  <p id="secret">I love you more than words can say! 💖</p>
 
   <!-- Hidden Gallery Container -->
   <div id="gallery-container">
     <div class="gallery">
-      <img src="https://i.postimg.cc/9FS0v9Y8/244da728-ddce-459e-b975-63154586c87f.jpg" alt="First meet">
-      <img src="https://i.postimg.cc/3Jq1Vyvn/61814341-3f11-4538-91f0-15cacf0ffc59.jpg" alt="First date">
-      <img src="https://i.postimg.cc/zGR7rJw5/1528b4e0-4dec-44cf-8bd9-3052de56bd97.jpg" alt="Second date">
-      <img src="https://i.postimg.cc/tT2CDngz/af1ccbe9-358c-4124-bbe4-f87c1dff4b22.jpg" alt="My favorite photo of us">
+      <img src="https://i.postimg.cc/9FS0v9Y8/244da728-ddce-459e-b975-63154586c87f.jpg" alt="First meet" onclick="openModal('This is our first meet up! I really had fun talking with you that day.. I had no regrets going there to see you')">
+      <img src="https://i.postimg.cc/3Jq1Vyvn/61814341-3f11-4538-91f0-15cacf0ffc59.jpg" alt="First date" onclick="openModal('This was our first date! Even though we just walked around the mall, being with you made me so happy!! I wish that day was longer, but it ended like a flash')">
+      <img src="https://i.postimg.cc/zGR7rJw5/1528b4e0-4dec-44cf-8bd9-3052de56bd97.jpg" alt="Second date" onclick="openModal('This was our second date! A lot happend on that day. I was happy being there, even though we had arguments that day.. I kept thinking of how i could make our day better')">
+      <img src="https://i.postimg.cc/tT2CDngz/af1ccbe9-358c-4124-bbe4-f87c1dff4b22.jpg" alt="My favorite photo of us" onclick="openModal('This is my favorite photo of us! Believe it or not this was my favorite photo of us, I just seem so happy.. Being with you everyday makes me want to see you everytime, i miss you every minute and every second..')">
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p id="modalText"></p>
     </div>
   </div>
 
   <!-- Heart animation -->
   <script>
     function reveal() {
-      document.getElementById('secret').style.display = 'block';
-      document.getElementById('gallery-container').style.display = 'block';
+      const secret = document.getElementById('secret');
+      const galleryContainer = document.getElementById('gallery-container');
+
+      secret.classList.add('show');
+      galleryContainer.classList.add('show');
+    }
+
+    function openModal(text) {
+      document.getElementById('modalText').innerText = text;
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
     }
 
     function createHeart() {
@@ -151,7 +238,19 @@
       }, 6000);
     }
 
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = Math.random() * 100 + 'vh';
+      document.body.appendChild(sparkle);
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1500);
+    }
+
     setInterval(createHeart, 300);
+    setInterval(createSparkle, 500);
   </script>
 
 </body>
