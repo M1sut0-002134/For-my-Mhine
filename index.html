@@ -16,14 +16,14 @@
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 2.5em; /* Adjusted for better mobile readability */
       color: #b30059;
       margin-top: 30px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     p {
-      font-size: 1.5em;
+      font-size: 1.2em; /* Adjusted for better mobile readability */
       color: #660033;
       margin: 10px 0;
     }
@@ -59,7 +59,7 @@
     }
 
     #secret {
-      font-size: 1.3em;
+      font-size: 1.1em; /* Adjusted for better mobile readability */
       color: #993366;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 10px;
@@ -76,8 +76,9 @@
     }
 
     .gallery img {
-      width: 180px;
-      height: 180px;
+      width: 100%; /* Make images responsive */
+      max-width: 180px; /* Set a max width */
+      height: auto; /* Maintain aspect ratio */
       object-fit: cover;
       border-radius: 15px;
       transition: transform 0.3s ease;
@@ -87,6 +88,26 @@
 
     .gallery img:hover {
       transform: scale(1.1);
+    }
+
+    /* Media Queries for Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em; /* Smaller font size for mobile */
+      }
+
+      p {
+        font-size: 1em; /* Smaller font size for mobile */
+      }
+
+      button {
+        padding: 10px 20px; /* Adjust button size for mobile */
+        font-size: 0.9em; /* Smaller font size for mobile */
+      }
+
+      #secret {
+        font-size: 1em; /* Smaller font size for mobile */
+      }
     }
 
     .heart {
@@ -188,7 +209,13 @@
   <button onclick="reveal()">Click Me</button>
 
   <!-- Hidden Love Message -->
-  <p id="secret">Happy monthsary bebe!!</p>
+  <p id="secret">Happy Monthsary Bebeee!!! 
+
+Every day na kasama kita i always feel happy and special, but today is extra special kaseee it marks another month of our journey together. Thank you for bringing so much happiness, love, and warmth into my life. Kahit lagi tayo nag aaway, we'll always find a way to love each other again.. I'm really sorry for the stupid things I've done, I swear i wont do those anymore ill prove it to you.. Anywaysss thank you ulit po bebe for staying with me, and having your presence with me pag malungkot ako.. Your smile, your teases, and your love means the world to me.
+
+No matter how many months or years pass, I’ll never stop of loving you. Even if sometimes i get tired, I'll always find a wayy to love you again. I hope more laughter, adventures, and unforgettable memories together to come for us. And I’m so lucky to call you mine. 🥰
+
+I love you always Mhine. Happy Monthsary! 💕</p>
 
   <!-- Hidden Gallery Container -->
   <div id="gallery-container">
