@@ -112,30 +112,31 @@
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 30px; /* Increased size for better visibility */
+      height: 30px; /* Increased size for better visibility */
       background: red;
       transform: rotate(45deg);
       animation: float 6s linear infinite;
+      z-index: 10; /* Ensure hearts are above other elements */
     }
 
     .heart::before,
     .heart::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 30px; /* Increased size for better visibility */
+      height: 30px; /* Increased size for better visibility */
       background: red;
       border-radius: 50%;
     }
 
     .heart::before {
-      top: -10px;
+      top: -15px; /* Adjusted for increased size */
       left: 0;
     }
 
     .heart::after {
-      left: -10px;
+      left: -15px; /* Adjusted for increased size */
       top: 0;
     }
 
@@ -158,6 +159,7 @@
       background: rgba(255, 255, 255, 0.8);
       border-radius: 50%;
       animation: sparkle 1.5s infinite;
+      z-index: 5; /* Ensure sparkles are below hearts */
     }
 
     @keyframes sparkle {
@@ -175,7 +177,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
+      overflow: hidden; /* Prevent scrolling */
       background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
@@ -248,10 +250,12 @@ I love you always Mhine. Happy Monthsary! 💕</p>
     function openModal(text) {
       document.getElementById('modalText').innerText = text;
       document.getElementById('myModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
     }
 
     function closeModal() {
       document.getElementById('myModal').style.display = 'none';
+      document.body.style.overflow = 'auto'; // Re-enable scrolling
     }
 
     function createHeart() {
