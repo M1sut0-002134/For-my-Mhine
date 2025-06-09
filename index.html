@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For My Love ❤️</title>
+  <title>For my Mhine</title>
   <style>
     body {
       margin: 0;
@@ -41,19 +41,14 @@
       background-color: #ff66b2;
     }
 
-    #secret {
+    #secret, #gallery-container {
       display: none;
       margin-top: 20px;
-      font-size: 1.3em;
-      color: #993366;
     }
 
-    .main-photo {
-      width: 80%;
-      max-width: 400px;
-      border-radius: 20px;
-      margin-top: 20px;
-      box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    #secret {
+      font-size: 1.3em;
+      color: #993366;
     }
 
     .gallery {
@@ -61,7 +56,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 15px;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .gallery img {
@@ -120,27 +115,29 @@
 </head>
 <body>
 
-  <h1>Hi My Love ❤️</h1>
-  <p>I made this little page just for you...</p>
-
-  <!-- Main featured photo -->
-  <img src="https://via.placeholder.com/400x300.png?text=Us+💑" alt="Us together" class="main-photo" />
+  <h1>Helloooo Bebe! 😍</h1>
+  <p>🎂Happy monthsary!!🥳</p>
 
   <button onclick="reveal()">Click Me</button>
-  <p id="secret">You're the light of my life. I love you endlessly. 💕</p>
 
-  <!-- Gallery Section -->
-  <div class="gallery">
-    <img src="https://i.postimg.cc/zGR7rJw5/1528b4e0-4dec-44cf-8bd9-3052de56bd97.jpg" alt="second date">
-    <img src="https://via.placeholder.com/200.png?text=🌸+2" alt="Memory 2">
-    <img src="https://via.placeholder.com/200.png?text=💘+3" alt="Memory 3">
-    <img src="https://via.placeholder.com/200.png?text=💓+4" alt="Memory 4">
+  <!-- Hidden Love Message -->
+  <p id="secret">text here</p>
+
+  <!-- Hidden Gallery Container -->
+  <div id="gallery-container">
+    <div class="gallery">
+      <img src="https://i.postimg.cc/9FS0v9Y8/244da728-ddce-459e-b975-63154586c87f.jpg" alt="First meet">
+      <img src="https://i.postimg.cc/3Jq1Vyvn/61814341-3f11-4538-91f0-15cacf0ffc59.jpg" alt="First date">
+      <img src="https://i.postimg.cc/zGR7rJw5/1528b4e0-4dec-44cf-8bd9-3052de56bd97.jpg" alt="Second date">
+      <img src="https://i.postimg.cc/tT2CDngz/af1ccbe9-358c-4124-bbe4-f87c1dff4b22.jpg" alt="My favorite photo of us">
+    </div>
   </div>
 
   <!-- Heart animation -->
   <script>
     function reveal() {
       document.getElementById('secret').style.display = 'block';
+      document.getElementById('gallery-container').style.display = 'block';
     }
 
     function createHeart() {
