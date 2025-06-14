@@ -5,10 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>For my Mhine</title>
   <style>
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to top right, #ffccd5, #ffe6e6);
+      background: linear-gradient(270deg, #ffccd5, #ffe6e6, #ff99cc);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
       overflow-x: hidden;
       text-align: center;
       padding-bottom: 50px;
@@ -19,13 +33,14 @@
       font-size: 2.5em; /* Adjusted for better mobile readability */
       color: #b30059;
       margin-top: 30px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5);
     }
 
     p {
       font-size: 1.2em; /* Adjusted for better mobile readability */
       color: #660033;
       margin: 10px 0;
+      text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
     }
 
     button {
@@ -37,13 +52,14 @@
       border: none;
       border-radius: 25px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     button:hover {
       background-color: #ff66b2;
-      transform: scale(1.05);
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     #secret, #gallery-container {
@@ -81,13 +97,14 @@
       height: auto; /* Maintain aspect ratio */
       object-fit: cover;
       border-radius: 15px;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
       cursor: pointer;
     }
 
     .gallery img:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(255, 182, 193, 0.7);
     }
 
     /* Media Queries for Responsive Design */
@@ -108,6 +125,10 @@
       #secret {
         font-size: 1em; /* Smaller font size for mobile */
       }
+
+      .gallery img {
+        max-width: 100%; /* Make images responsive */
+      }
     }
 
     .heart {
@@ -116,7 +137,7 @@
       height: 30px; /* Increased size for better visibility */
       background: red;
       transform: rotate(45deg);
-      animation: float 6s linear infinite;
+      animation: float 3s ease-in-out infinite;
       z-index: 10; /* Ensure hearts are above other elements */
     }
 
@@ -143,11 +164,9 @@
     @keyframes float {
       0% {
         transform: rotate(45deg) translateY(0);
-        opacity: 1;
       }
       100% {
-        transform: rotate(45deg) translateY(-1000px);
-        opacity: 0;
+        transform: rotate(45deg) translateY(-100px);
       }
     }
 
@@ -181,6 +200,13 @@
       background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
     }
 
     .modal-content {
@@ -201,14 +227,31 @@
       cursor: pointer;
       color: #b30059;
     }
+
+    #countdown {
+      font-size: 1.5em;
+      color: #b30059;
+      margin-top: 20px;
+    }
+
+    #timer-description {
+      font-size: 1.1em;
+      color: #660033;
+      margin-top: 10px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Helloooo Mhineeeeeeeeey! 😍</h1>
-  <p>🎂made this for youuu!!🥳</p>
+  <h1>Helloooo Bebeeeeeeeee! 😍</h1>
+  <p>🎂made this for youuu, Happy Monthsaryyyyy!!🥳</p>
 
   <button onclick="reveal()">Click Me</button>
+
+  <!-- Countdown Timer -->
+  <div id="countdown"></div>
+  <div id="timer-description">This timer indicates how long until our anniversary. 💖</div>
 
   <!-- Hidden Love Message -->
   <p id="secret">Happy Monthsary Bebeee!!! 
@@ -249,12 +292,12 @@ I love you always Mhine. Happy Monthsary! 💕</p>
 
     function openModal(text) {
       document.getElementById('modalText').innerText = text;
-      document.getElementById('myModal').style.display = 'flex';
+      document.getElementById('myModal').classList.add('show');
       document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
     }
 
     function closeModal() {
-      document.getElementById('myModal').style.display = 'none';
+      document.getElementById('myModal').classList.remove('show');
       document.body.style.overflow = 'auto'; // Re-enable scrolling
     }
 
@@ -280,8 +323,27 @@ I love you always Mhine. Happy Monthsary! 💕</p>
       }, 1500);
     }
 
-    setInterval(createHeart, 300);
-    setInterval(createSparkle, 500);
+    setInterval(createHeart, 1000); // Reduced frequency to 1 second
+    setInterval(createSparkle, 1000); // Reduced frequency to 1 second
+
+    // Countdown Timer
+    const countdownDate = new Date("2026-05-16T00:00:00").getTime();
+    const countdownFunction = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
   </script>
 
 </body>
